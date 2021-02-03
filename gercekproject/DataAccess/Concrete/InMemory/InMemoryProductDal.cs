@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -17,11 +18,11 @@ namespace DataAccess.Concrete.InMemory
 
             _products = new List<Product>()
             {
-                new Product() {ProductId = 1,CategoryId = 1,ProductName = "Patates",UnitsInStock = 10,UnitsPrice = 5},
-                new Product() {ProductId = 2,CategoryId = 1,ProductName = "Elma",UnitsInStock = 10,UnitsPrice = 3},
-                new Product() {ProductId = 3,CategoryId = 2,ProductName = "Telefon",UnitsInStock = 1,UnitsPrice = 5000},
-                new Product() {ProductId = 4,CategoryId = 2,ProductName = "Laptop",UnitsInStock = 5,UnitsPrice = 7000},
-                new Product() {ProductId = 5,CategoryId = 2,ProductName = "Kamera",UnitsInStock = 10,UnitsPrice = 2000},
+                new Product() {ProductId = 1,CategoryId = 1,ProductName = "Patates",UnitsInStock = 10,UnitPrice = 5},
+                new Product() {ProductId = 2,CategoryId = 1,ProductName = "Elma",UnitsInStock = 10,UnitPrice = 3},
+                new Product() {ProductId = 3,CategoryId = 2,ProductName = "Telefon",UnitsInStock = 1,UnitPrice = 5000},
+                new Product() {ProductId = 4,CategoryId = 2,ProductName = "Laptop",UnitsInStock = 5,UnitPrice = 7000},
+                new Product() {ProductId = 5,CategoryId = 2,ProductName = "Kamera",UnitsInStock = 10,UnitPrice = 2000},
 
 
 
@@ -31,6 +32,16 @@ namespace DataAccess.Concrete.InMemory
         public List<Product> GetAll()
         {
             return _products;
+        }
+
+        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Product Get(Expression<Func<Product, bool>> filter = null)
+        {
+            throw new NotImplementedException();
         }
 
         public void Add(Product product)
@@ -56,7 +67,7 @@ namespace DataAccess.Concrete.InMemory
             Product productToUpdate = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
             productToUpdate.ProductName = product.ProductName;
             productToUpdate.CategoryId = product.CategoryId;
-            productToUpdate.UnitsPrice = product.UnitsPrice;
+            productToUpdate.UnitPrice = product.UnitPrice;
             productToUpdate.UnitsInStock = productToUpdate.UnitsInStock;
         }
 
