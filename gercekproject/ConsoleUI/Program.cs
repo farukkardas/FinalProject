@@ -9,6 +9,11 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+           ProductTest();
+        }
+
+        private static void CategoryTest()
+        {
             CategoryManager categoryManager = new CategoryManager(new EFCategoryDal());
 
             foreach (var category in categoryManager.GetAll())
@@ -22,9 +27,9 @@ namespace ConsoleUI
             ProductManager productManager = new ProductManager(new EFProductDal());
 
 
-            foreach (var xProduct in productManager.GetAllByCategoryId(2))
+            foreach (var xProduct in productManager.GetProductDetails())
             {
-                Console.WriteLine(xProduct.ProductName);
+                Console.WriteLine(xProduct.ProductName + " " + xProduct.CategoryName);
             }
         }
     }
