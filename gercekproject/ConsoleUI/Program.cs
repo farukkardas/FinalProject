@@ -9,6 +9,16 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            CategoryManager categoryManager = new CategoryManager(new EFCategoryDal());
+
+            foreach (var category in categoryManager.GetAll())
+            {
+                Console.WriteLine(category.CategoryName);
+            }
+        }
+
+        private static void ProductTest()
+        {
             ProductManager productManager = new ProductManager(new EFProductDal());
 
 
@@ -16,9 +26,6 @@ namespace ConsoleUI
             {
                 Console.WriteLine(xProduct.ProductName);
             }
-
-            
-
         }
     }
 }

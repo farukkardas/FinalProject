@@ -1,16 +1,16 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
-    using Entities.Abstract;
+using Core.Entities;
 
-    namespace DataAccess.Abstract
+namespace Core.DataAccess
 {
     // class : referans tip olabilir
     //IEntity : IEntity olabilir veya implemente eden bir nesne olabilir.
-    public interface IEntityRepository<T> where T:class,IEntity,new()
+    public interface IEntityRepository<T> where T : class, IEntity, new()
     {
-        List<T> GetAll(Expression<Func<T,bool>> filter=null);
+        List<T> GetAll(Expression<Func<T, bool>> filter = null);
         T Get(Expression<Func<T, bool>> filter = null);
         void Add(T entity);
         void Update(T entity);
@@ -19,5 +19,5 @@ using System.Text;
 
     }
 
-  
+
 }
