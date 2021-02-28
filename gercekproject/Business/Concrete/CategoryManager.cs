@@ -1,29 +1,35 @@
-﻿using System;
+﻿using Business.Abstract;
+using Core.Utilities.Results;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
+using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Business.Abstract;
-using DataAccess.Abstract;
-using Entities.Concrete;
 
 namespace Business.Concrete
 {
-    public class CategoryManager:ICategoryService
+    public class CategoryManager : ICategoryService
     {
         ICategoryDal _categoryDal;
+        private EFCategoryDal categoryDal;
 
-        public CategoryManager(ICategoryDal categoryDal)
+    
+        public CategoryManager(EFCategoryDal categoryDal)
         {
-            _categoryDal = categoryDal;
+            this.categoryDal = categoryDal;
         }
 
-        public List<Category> GetAll()
+        public IDataResult<List<Category>> GetAll()
         {
-            return _categoryDal.GetAll();
+            //İş kodları
+            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll());
         }
 
-        public Category GetById(int categoryId)
+        //Select * from Categories where CategoryId = 3
+        public IDataResult<Category> GetById(int categoryId)
         {
-            return _categoryDal.Get(c => c.CategoryId == categoryId);
+            return new SuccessDataResult<Category>(_categoryDal.Get(c => c.CategoryId == categoryId));
         }
     }
 }

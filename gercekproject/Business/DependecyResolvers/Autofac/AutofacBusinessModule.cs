@@ -9,6 +9,7 @@ using DataAccess.Concrete.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Business.CCS;
 
 namespace Business.DependecyResolvers.Autofac
 {
@@ -18,7 +19,7 @@ namespace Business.DependecyResolvers.Autofac
         {
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
             builder.RegisterType<EFProductDal>().As<IProductDal>().SingleInstance();
-
+         
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

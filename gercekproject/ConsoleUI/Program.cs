@@ -1,22 +1,26 @@
-﻿using System;
-using Business.Concrete;
+﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using System;
 
 namespace ConsoleUI
 {
+    //SOLID
+    //Open Closed Principle
     class Program
     {
         static void Main(string[] args)
         {
-           ProductTest();
+            //Data Transformation Object
+            ProductTest();
+            //IoC 
+            //CategoryTest();
         }
 
         private static void CategoryTest()
         {
             CategoryManager categoryManager = new CategoryManager(new EFCategoryDal());
-
-            foreach (var category in categoryManager.GetAll())
+            foreach (var category in categoryManager.GetAll().Data)
             {
                 Console.WriteLine(category.CategoryName);
             }
@@ -24,15 +28,16 @@ namespace ConsoleUI
 
         private static void ProductTest()
         {
-            ProductManager productManager = new ProductManager(new EFProductDal());
+            ProductManager productManager = new ProductManager(new EFProductDal()
+                , new CategoryManager(new EFCategoryDal()));
 
             var result = productManager.GetProductDetails();
 
             if (result.Success == true)
             {
-                foreach (var data in result.Data)
+                foreach (var product in result.Data)
                 {
-                    Console.WriteLine(data.ProductName + " " + data.CategoryName);
+                    Console.WriteLine(product.ProductName + "/" + product.CategoryName);
                 }
             }
             else
@@ -40,10 +45,7 @@ namespace ConsoleUI
                 Console.WriteLine(result.Message);
             }
 
-            //foreach (var xProduct in productManager.GetProductDetails().Data)
-            //{
-            //    Console.WriteLine(xProduct + " " + xProduct.CategoryName);
-            //}
+
         }
     }
 }
