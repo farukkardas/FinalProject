@@ -12,17 +12,14 @@ namespace Business.Concrete
     public class CategoryManager : ICategoryService
     {
         ICategoryDal _categoryDal;
-        private EFCategoryDal categoryDal;
 
-    
-        public CategoryManager(EFCategoryDal categoryDal)
+        public CategoryManager(ICategoryDal categoryDal)
         {
-            this.categoryDal = categoryDal;
+            _categoryDal = categoryDal;
         }
 
         public IDataResult<List<Category>> GetAll()
         {
-            //İş kodları
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll());
         }
 

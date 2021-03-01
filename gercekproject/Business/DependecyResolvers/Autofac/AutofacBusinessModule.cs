@@ -12,7 +12,7 @@ using System.Text;
 using Business.CCS;
 using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http;
+
 namespace Business.DependecyResolvers.Autofac
 {
     public class AutofacBusinessModule : Module
