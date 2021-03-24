@@ -22,5 +22,6 @@ namespace Business.Constants
         public static string UserNotFound = "Kullanıcı bulunamadı!";
         public static string UserRegistered = "Kullanıcı kaydoldu";
         public static string AccessTokenCreated = "Access Tokeni oluşturuldu";
+        public static string CategoryLimitMaximum = "Kategori sınırına ulaşıldı";
     }
 }
